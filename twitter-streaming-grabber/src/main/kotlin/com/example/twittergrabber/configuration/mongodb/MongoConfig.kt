@@ -1,5 +1,6 @@
 package com.example.twittergrabber.configuration.mongodb
 
+import com.example.core.autoconfig.MongoProperties
 import com.mongodb.MongoClientOptions
 import org.springframework.context.annotation.Configuration
 import com.mongodb.ServerAddress
@@ -10,8 +11,8 @@ import org.springframework.data.mongodb.config.AbstractMongoConfiguration
 import org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper
 import org.springframework.data.mongodb.core.convert.MappingMongoConverter
 
-@Configuration
-@EnableConfigurationProperties(MongoProperties::class)
+//@Configuration
+//@EnableConfigurationProperties(MongoProperties::class)
 class MongoConfig : AbstractMongoConfiguration() {
 
     @Autowired

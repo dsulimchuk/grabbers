@@ -1,22 +1,26 @@
 package com.example.twittergrabber
 
 import com.example.core.domain.*
+import com.example.core.repositories.MessageRepository
 import com.example.core.services.PersistentMessageQueue
 import mu.KLogging
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
+import org.springframework.context.annotation.ComponentScan
+import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories
+import org.springframework.scheduling.annotation.EnableScheduling
 import twitter4j.FilterQuery
 import twitter4j.Status
 import twitter4j.TwitterStreamFactory
 import javax.annotation.PostConstruct
 
 @SpringBootApplication(scanBasePackages = arrayOf(
-        "com.example.core",
         "com.example.twittergrabber"
 ))
-@EnableMongoRepositories
+@@EnableScheduling
+
 class TwitterGrabberApplication {
 
     private companion object : KLogging()
@@ -25,6 +29,7 @@ class TwitterGrabberApplication {
     lateinit var twitterStreamFactory: TwitterStreamFactory
     @Autowired
     lateinit var persistentMessageQueue: PersistentMessageQueue
+
 
     @PostConstruct
     fun openStream() {
@@ -64,6 +69,9 @@ class TwitterGrabberApplication {
     )
 
 }
+
+interface MessageRepository : MongoRepository<Message, String>
+
 
 fun main(args: Array<String>) {
     runApplication<TwitterGrabberApplication>(*args)

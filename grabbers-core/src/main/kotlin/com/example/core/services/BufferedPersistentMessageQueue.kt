@@ -4,16 +4,16 @@ import com.example.core.domain.Message
 import com.example.core.repositories.MessageRepository
 import mu.KLogging
 import org.springframework.context.annotation.Profile
+import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.scheduling.annotation.EnableScheduling
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 import java.util.*
 import java.util.concurrent.LinkedBlockingQueue
 
-@Component
-@Profile("prod")
 @EnableScheduling
-internal class BufferedPersistentMessageQueue(private val messageRepository: MessageRepository) : PersistentMessageQueue {
+
+class BufferedPersistentMessageQueue(private val messageRepository: MongoRepository<Message, String>) : PersistentMessageQueue {
 
     private companion object : KLogging()
 

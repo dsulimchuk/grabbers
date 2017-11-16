@@ -1,4 +1,4 @@
-package com.example.twittergrabber.configuration.mongodb
+package com.example.core.autoconfig
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 
